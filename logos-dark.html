@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ORM Portfolio</title>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <!-- <link rel="stylesheet" href="./css/light.css" /> -->
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="assets/icons/favicon.ico"
+    />
+
+    <!-- CHANGE MENU LANGUAGE SCRIPT -->
+
+    <script>
+      function changeLanguage() {
+        var menuItems = document.getElementsByTagName("li");
+        var langButton = document.getElementsByClassName("lang-button")[0];
+        var langParagraph = langButton.getElementsByTagName("p")[0];
+
+        for (var i = 0; i < menuItems.length; i++) {
+          var menuItem = menuItems[i];
+          if (menuItem.classList.contains("menu-item1")) {
+            if (menuItem.firstChild.innerHTML === "HOME") {
+              menuItem.firstChild.innerHTML = "ГОЛОВНА";
+              menuItem.firstChild.setAttribute("href", "#home");
+            } else if (menuItem.firstChild.innerHTML === "ГОЛОВНА") {
+              menuItem.firstChild.innerHTML = "HOME";
+              menuItem.firstChild.setAttribute("href", "#home");
+            }
+          } else if (menuItem.classList.contains("menu-item2")) {
+            if (menuItem.firstChild.innerHTML === "ABOUT ME") {
+              menuItem.firstChild.innerHTML = "ПРО МЕНЕ";
+              menuItem.firstChild.setAttribute("href", "#aboutme");
+            } else if (menuItem.firstChild.innerHTML === "ПРО МЕНЕ") {
+              menuItem.firstChild.innerHTML = "ABOUT ME";
+              menuItem.firstChild.setAttribute("href", "#aboutme");
+            }
+          } else if (menuItem.classList.contains("menu-item3")) {
+            if (menuItem.firstChild.innerHTML === "PORTFOLIO") {
+              menuItem.firstChild.innerHTML = "ПОРТФОЛІО";
+              menuItem.firstChild.setAttribute("href", "#portfolio");
+            } else if (menuItem.firstChild.innerHTML === "ПОРТФОЛІО") {
+              menuItem.firstChild.innerHTML = "PORTFOLIO";
+              menuItem.firstChild.setAttribute("href", "#portfolio");
+            }
+          } else if (menuItem.classList.contains("menu-item4")) {
+            if (menuItem.firstChild.innerHTML === "CONTACTS") {
+              menuItem.firstChild.innerHTML = "КОНТАКТИ";
+              menuItem.firstChild.setAttribute("href", "#contact");
+            } else if (menuItem.firstChild.innerHTML === "КОНТАКТИ") {
+              menuItem.firstChild.innerHTML = "CONTACTS";
+              menuItem.firstChild.setAttribute("href", "#contact");
+            }
+          }
+        }
+
+        if (langParagraph.innerHTML === "UA") {
+          langParagraph.innerHTML = "EN";
+        } else if (langParagraph.innerHTML === "EN") {
+          langParagraph.innerHTML = "UA";
+        }
+      }
+    </script>
+   <!-- DARK STYLE THEME -->
+   <style class="dark-mode">
+    body {
+      width: 1734px;
+      height: 1320px;
+      background: radial-gradient(
+          87.61% 87.68% at 50% 12.32%,
+          #9c9c9c 2.08%,
+          #232323 100%
+        )
+        no-repeat;
+      background-attachment: fixed;
+      font-family: Helvetica, Arial, sans-serif;
+      overflow-x: hidden;
+    }
+    .menu-rectangle {
+      position: fixed;
+      width: 100vw;
+      height: 92px;
+      background: linear-gradient(
+        180deg,
+        rgba(72, 72, 72, 0.72) 0%,
+        rgba(0, 0, 0, 0.144) 100%
+      );
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(6px);
+      border-radius: 0px 0px 50px 50px;
+      z-index: 1;
+    }
+    .logo {
+      position: fixed;
+      left: 11vw;
+      top: 30px;
+      z-index: 2;
+    }
+
+    a {
+      color: rgb(255, 255, 255);
+    }
+    .menu-item1 {
+      margin-left: 28vw;
+      position: fixed;
+      z-index: 2;
+      font-size: 20px;
+      font-weight: 700;
+      top: 38px;
+    }
+    .menu-item2 {
+      margin-left: 40vw;
+      position: fixed;
+      z-index: 2;
+      font-size: 20px;
+      font-weight: 700;
+      top: 38px;
+    }
+    .menu-item3 {
+      margin-left: 54vw;
+      position: fixed;
+      z-index: 2;
+      font-size: 20px;
+      font-weight: 700;
+      top: 38px;
+    }
+    .menu-item4 {
+      margin-left: 68vw;
+      position: fixed;
+      z-index: 2;
+      font-size: 20px;
+      font-weight: 700;
+      top: 38px;
+    }
+    .lang-button {
+      position: fixed;
+      width: 31px;
+      height: 31px;
+      right: 15vw;
+      top: 30px;
+      z-index: 2;
+      border-radius: 100%;
+      color: #ffffff;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      background: rgba(0, 0, 0, 0.6);
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(6px);
+    }
+    .ua {
+      margin-top: 9px;
+      margin-left: 5px;
+    }
+    .day-button {
+      position: fixed;
+      width: 31px;
+      height: 31px;
+      top: 31px;
+      right: 11vw;
+      z-index: 2;
+      border-radius: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(6px);
+    }
+    .sun {
+      position: fixed;
+      top: 4px;
+      bottom: 4px;
+      right: 4px;
+    }
+  </style>
+    <!-- VIEW IMAGE SCRIPT -->
+
+    <script>
+      function openImage(imageIndex) {
+        var overlay = document.getElementById("overlay");
+        var image = document.getElementById("overlay-image");
+        var closeBtn = document.getElementById("close-btn");
+        var prevBtn = document.getElementById("prev-btn");
+        var nextBtn = document.getElementById("next-btn");
+        var images = [
+          "assets/folders-icons/logos/own-logo-dark.png",
+          "assets/folders-icons/logos/aviso-bank-identify.jpg",
+          "assets/folders-icons/logos/first bank mockup.jpg",
+          "assets/folders-icons/logos/mu-logo.jpg",
+        ];
+
+        image.src = images[imageIndex];
+        overlay.style.display = "flex";
+
+        closeBtn.addEventListener("click", closeImage);
+        prevBtn.addEventListener("click", showPreviousImage);
+        nextBtn.addEventListener("click", showNextImage);
+        document.addEventListener("keydown", handleKeyPress);
+
+        function closeImage() {
+          overlay.style.display = "none";
+          closeBtn.removeEventListener("click", closeImage);
+          prevBtn.removeEventListener("click", showPreviousImage);
+          nextBtn.removeEventListener("click", showNextImage);
+          document.removeEventListener("keydown", handleKeyPress);
+        }
+
+        function showPreviousImage() {
+          imageIndex--;
+          if (imageIndex < 0) {
+            imageIndex = images.length - 1;
+          }
+          image.src = images[imageIndex];
+        }
+
+        function showNextImage() {
+          imageIndex++;
+          if (imageIndex >= images.length) {
+            imageIndex = 0;
+          }
+          image.src = images[imageIndex];
+        }
+
+        function handleKeyPress(event) {
+          if (event.key === "Escape") {
+            closeImage();
+          } else if (event.key === "ArrowLeft") {
+            showPreviousImage();
+          } else if (event.key === "ArrowRight") {
+            showNextImage();
+          }
+        }
+      }
+    </script>
+
+    <!-- VIEW IMAGE STYLE -->
+
+    <style>
+      .posters {
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      #overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+
+      #overlay img {
+        max-width: 80%;
+        max-height: 80%;
+      }
+
+      .close {
+        position: absolute;
+        top: 30px;
+        right: 60px;
+        color: #fff;
+        font-size: 44px;
+        cursor: pointer;
+        font-weight: 100;
+      }
+
+      .prev,
+      .next {
+        position: absolute;
+        top: 50%;
+        font-size: 24px;
+        color: #fff;
+        cursor: pointer;
+        transform: translateY(-50%);
+        padding-bottom: 10px;
+        padding-top: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+        background-color: rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+        border-radius: 100%;
+      }
+
+      .prev {
+        left: 60px;
+      }
+
+      .next {
+        right: 60px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- MENU -->
+    <header id="#home" class="header">
+        <div>
+          <a href="#home"
+            ><img src="./assets/logo-white.svg" alt="logo" class="logo"
+          /></a>
+          <ul>
+            <li class="menu-item1"><a href="#">HOME</a></li>
+            <li class="menu-item2"><a href="#">ABOUT ME</a></li>
+            <li class="menu-item3"><a href="#">PORTFOLIO</a></li>
+            <li class="menu-item4"><a href="#">CONTACTS</a></li>
+          </ul>
+  
+          <a href="#" class="lang-button" onclick="changeLanguage()">
+            <p class="ua">UA</p></a
+          >
+  
+          
+          <a href="logos-light.html" class="day-button">
+            <img id="" src="./assets/icons/sun.svg" alt="" class="sun"
+          /></a>
+  
+          <div class="menu-rectangle"></div>
+        </div>
+      </header>
+    <!-- CONTENT -->
+
+    <h1
+      style="
+        color: #ffffff;
+        position: absolute;
+        margin-top: 176px;
+        margin-left: 84px;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 64px;
+        line-height: 74px;
+      "
+    >
+      LOGO<span style="color: rgba(255, 92, 0, 1)">S</span>
+    </h1>
+    <hr
+      style="
+        position: absolute;
+        width: 226px;
+        margin-top: 258px;
+        margin-left: 84px;
+        border-color: #202020;
+      "
+    />
+    <h2
+      style="
+        color: #d8d8d8;
+        position: absolute;
+        left: 87px;
+        top: 273px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 37px;
+      "
+    >
+      Логотипи
+    </h2>
+
+    <img
+      src="./assets/logo-white.svg"
+      alt="Logo"
+      class="posters"
+      style="
+        position: absolute;
+        width: 240px;
+        height: 85px;
+        margin-top: 474px;
+        margin-left: 242px;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+      "
+      onclick="openImage(0)"
+    />
+
+    <img
+      src="./assets/folders-icons/logos/avizo.png"
+      alt="Aviso Bank"
+      class="posters"
+      style="
+        position: absolute;
+        width: 283px;
+        height: 140px;
+        left: 994px;
+        top: 589px;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+      "
+      onclick="openImage(1)"
+    />
+    <img
+      src="./assets/folders-icons/logos/first.png"
+      alt="First Bank"
+      class="posters"
+      style="
+        position: absolute;
+     
+        margin-left: 242px;
+        margin-top: 838px;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+      "
+      onclick="openImage(2)"
+    />
+
+    <img
+      src="./assets/folders-icons/logos/mu.png"
+      alt="MU"
+      class="posters"
+      style="
+        position: absolute;
+        width: 235px;
+        height: 128px;
+        margin-top: 1024px;
+        margin-left: 994px;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+      "
+      onclick="openImage(3)"
+    />
+
+    <div id="overlay" style="display: none">
+      <img id="overlay-image" src="" alt="" />
+      <div id="close-btn" class="close">&times;</div>
+      <div id="prev-btn" class="prev">&#10094;</div>
+      <div id="next-btn" class="next">&#10095;</div>
+    </div>
+    <div>
+        <a href="print-prod-dark.html">
+          <img
+            style="
+              position: fixed;
+              border-radius: 100%;
+              background: rgba(0, 0, 0, 0.6);
+              box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
+              backdrop-filter: blur(6px);
+              width: 25px;
+              height: 25px;
+              padding: 14px;
+              margin-top: 42%;
+              margin-left: 93%;
+            "
+            src="./assets/icons/arrow-icon-for-dark.svg"
+            alt=""
+        /></a>
+      </div>
+  </body>
+</html>
